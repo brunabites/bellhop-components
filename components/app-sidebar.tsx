@@ -37,7 +37,7 @@ const data = {
   user: {
     name: "fujiwara",
     email: "fuji@act.com",
-    avatar: "https://api.dicebear.com/9.x/notionists/svg?seed=Destiny",
+    avatar: "https://avatar.iran.liara.run/public/3",
   },
   navMain: [
     {
