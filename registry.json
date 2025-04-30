@@ -1,0 +1,239 @@
+{
+  "components": [
+    {
+      "name": "Button",
+      "type": "ui",
+      "path": "src/ui/components/Button.tsx",
+      "description": "Interactive clickable element that triggers an action or event.",
+      "schema": {
+        "props": {
+          "variant": {
+            "type": "enum",
+            "required": false,
+            "default": "default",
+            "values": [
+              "default",
+              "secondaryBrand",
+              "secondary",
+              "outlineBrand",
+              "outline",
+              "destructive",
+              "destructiveOutline",
+              "success",
+              "successOutline",
+              "ghost",
+              "link"
+            ],
+            "description": "The visual style variant of the button"
+          },
+          "size": {
+            "type": "enum",
+            "required": false,
+            "default": "md",
+            "values": [
+              "sm",
+              "md",
+              "lg",
+              "icon-sm",
+              "icon-md",
+              "icon-lg"
+            ],
+            "description": "The size of the button"
+          },
+          "iconPosition": {
+            "type": "enum",
+            "required": false,
+            "default": "left",
+            "values": [
+              "left",
+              "right"
+            ],
+            "description": "The position of the icon relative to the text"
+          },
+          "fullWidth": {
+            "type": "boolean",
+            "required": false,
+            "default": false,
+            "description": "Whether the button should take up the full width of its container"
+          },
+          "asChild": {
+            "type": "boolean",
+            "required": false,
+            "default": false,
+            "description": "Whether to render as a child component"
+          },
+          "startIcon": {
+            "type": "node",
+            "required": false,
+            "description": "Icon to display at the start of the button"
+          },
+          "endIcon": {
+            "type": "node",
+            "required": false,
+            "description": "Icon to display at the end of the button"
+          }
+        },
+        "zodSchema": "import * as z from 'zod';\n\nexport const buttonVariantSchema = z.enum([\n  'default',\n  'secondaryBrand',\n  'secondary',\n  'outlineBrand',\n  'outline',\n  'destructive',\n  'destructiveOutline',\n  'success',\n  'successOutline',\n  'ghost',\n  'link'\n]);\n\nexport const buttonSizeSchema = z.enum([\n  'sm',\n  'md',\n  'lg',\n  'icon-sm',\n  'icon-md',\n  'icon-lg'\n]);\n\nexport const buttonIconPositionSchema = z.enum([\n  'left',\n  'right'\n]);\n\nexport const buttonSchema = z.object({\n  variant: buttonVariantSchema.optional().default('default'),\n  size: buttonSizeSchema.optional().default('md'),\n  iconPosition: buttonIconPositionSchema.optional().default('left'),\n  fullWidth: z.boolean().optional().default(false),\n  asChild: z.boolean().optional().default(false),\n  startIcon: z.any().optional(),\n  endIcon: z.any().optional()\n});"
+      },
+      "dependencies": [
+        {
+          "name": "@radix-ui/react-slot",
+          "version": "^1.0.0",
+          "type": "npm"
+        },
+        {
+          "name": "class-variance-authority",
+          "version": "^0.7.0",
+          "type": "npm"
+        },
+        {
+          "name": "tailwind-merge",
+          "version": "^2.0.0",
+          "type": "npm"
+        },
+        {
+          "name": "clsx",
+          "version": "^2.0.0",
+          "type": "npm"
+        }
+      ],
+      "classNames": {
+        "base": "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-lg font-medium transition-all disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-auto shrink-0 [&_svg]:shrink-0 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-ring/90 aria-invalid:ring-destructive/20",
+        "variants": {
+          "variant": {
+            "default": "bg-primary text-primary-foreground hover:bg-primary-hover",
+            "secondaryBrand": "bg-indigo-50 text-primary hover:bg-indigo-100",
+            "secondary": "bg-secondary text-secondary-foreground hover:bg-gray-300",
+            "outlineBrand": "border border-indigo-300 text-primary hover:bg-indigo-100",
+            "outline": "border bg-transparent text-secondary-foreground hover:bg-gray-100",
+            "destructive": "bg-destructive text-white hover:bg-red-800 focus-visible:ring-destructive/60",
+            "destructiveOutline": "border border-red-300 text-destructive hover:bg-red-50 focus-visible:ring-destructive/60",
+            "success": "bg-success text-white hover:bg-green-800 focus-visible:ring-success/60",
+            "successOutline": "border border-green-300 text-success hover:bg-green-50 focus-visible:ring-success/60",
+            "ghost": "text-secondary-foreground hover:bg-accent hover:bg-gray-100",
+            "link": "text-primary underline-offset-4 hover:underline p-0 h-auto"
+          },
+          "size": {
+            "md": "h-10 px-4 py-2 [&_svg:not([class*='size-'])]:size-5",
+            "sm": "h-8 px-3 py-1.5 text-xs gap-1.5 [&_svg:not([class*='size-'])]:size-4",
+            "lg": "h-12 px-5 py-2.5 text-base [&_svg:not([class*='size-'])]:size-5",
+            "icon-sm": "size-9 p-0 [&_svg:not([class*='size-'])]:size-4",
+            "icon-md": "size-10 p-0 [&_svg:not([class*='size-'])]:size-5",
+            "icon-lg": "size-12 p-0 [&_svg:not([class*='size-'])]:size-5"
+          },
+          "iconPosition": {
+            "left": "flex-row",
+            "right": "flex-row"
+          },
+          "fullWidth": {
+            "true": "w-full"
+          },
+          "hasStartIcon": {
+            "true": ""
+          },
+          "hasEndIcon": {
+            "true": ""
+          }
+        },
+        "defaultVariants": {
+          "variant": "default",
+          "size": "md",
+          "iconPosition": "left",
+          "fullWidth": false,
+          "hasStartIcon": false,
+          "hasEndIcon": false
+        },
+        "compoundVariants": [
+          {
+            "iconPosition": "left",
+            "size": "sm",
+            "class": "gap-1"
+          },
+          {
+            "iconPosition": "right",
+            "size": "sm",
+            "class": "gap-1"
+          },
+          {
+            "iconPosition": "left",
+            "size": "md",
+            "class": "gap-1"
+          },
+          {
+            "iconPosition": "right",
+            "size": "md",
+            "class": "gap-1"
+          },
+          {
+            "iconPosition": "left",
+            "size": "lg",
+            "class": "gap-1.5"
+          },
+          {
+            "iconPosition": "right",
+            "size": "lg",
+            "class": "gap-1.5"
+          },
+          {
+            "size": "sm",
+            "hasStartIcon": true,
+            "class": "pl-2.5 pr-3"
+          },
+          {
+            "size": "sm",
+            "hasEndIcon": true,
+            "class": "pl-3 pr-2.5"
+          },
+          {
+            "size": "md",
+            "hasStartIcon": true,
+            "class": "pl-3.5 pr-4"
+          },
+          {
+            "size": "md",
+            "hasEndIcon": true,
+            "class": "pl-4 pr-3.5"
+          },
+          {
+            "size": "lg",
+            "hasStartIcon": true,
+            "class": "pl-4 pr-5"
+          },
+          {
+            "size": "lg",
+            "hasEndIcon": true,
+            "class": "pl-5 pr-4"
+          },
+          {
+            "hasStartIcon": true,
+            "hasEndIcon": true,
+            "size": "sm",
+            "class": "pl-2.5 pr-2.5"
+          },
+          {
+            "hasStartIcon": true,
+            "hasEndIcon": true,
+            "size": "md",
+            "class": "pl-3.5 pr-3.5"
+          },
+          {
+            "hasStartIcon": true,
+            "hasEndIcon": true,
+            "size": "lg",
+            "class": "pl-4 pr-4"
+          },
+          {
+            "variant": "link",
+            "hasStartIcon": true,
+            "class": "gap-1.5 p-0 h-auto"
+          },
+          {
+            "variant": "link",
+            "hasEndIcon": true,
+            "class": "gap-1.5 p-0 h-auto"
+          }
+        ]
+      }
+    }
+  ]
+}
