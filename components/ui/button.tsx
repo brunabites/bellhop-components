@@ -11,7 +11,7 @@ const buttonVariants = cva(
     variants: {
       variant: {
         default:
-        "bg-primary text-primary-foreground hover:bg-primary-hover",
+        "bg-indigo-600 text-primary-foreground hover:bg-indigo-700 focus-visible:ring-indigo-600/60",
 
         secondaryBrand:
         "bg-indigo-50 text-primary hover:bg-indigo-100",
@@ -23,7 +23,7 @@ const buttonVariants = cva(
         "border border-indigo-300 text-primary hover:bg-indigo-100",
 
         outline:
-        "border bg-transparent text-secondary-foreground hover:bg-gray-100 ",
+        "border border-neutral-600/20 bg-transparent text-secondary-foreground hover:bg-gray-200/50 ",
 
         destructive:
         "bg-destructive text-white hover:bg-red-800 focus-visible:ring-destructive/60",
@@ -38,13 +38,13 @@ const buttonVariants = cva(
         "border border-green-300 text-success hover:bg-green-50 focus-visible:ring-success/60",
 
         ghost:
-        "hover:bg-accent hover:bg-gray-100 ",
+        " text-secondary-foreground hover:bg-accent hover:bg-gray-200/50 ",
 
         link: "text-primary underline-offset-4 hover:underline p-0 h-auto",
       },
       size: {
         md: "h-10 px-4 py-2 [&_svg:not([class*='size-'])]:size-5",
-        sm: "h-8 px-3 py-1.5 text-xs gap-1.5 [&_svg:not([class*='size-'])]:size-4",
+        sm: "h-9 px-3 py-1.5 text-xs gap-1.5 [&_svg:not([class*='size-'])]:size-4",
         lg: "h-12 px-5 py-2.5 text-base [&_svg:not([class*='size-'])]:size-5",
         "icon-sm": "size-9 p-0 [&_svg:not([class*='size-'])]:size-4", // 36x36 with 16px icon
         "icon-md": "size-10 p-0 [&_svg:not([class*='size-'])]:size-5", // 40x40 with 20px icon
@@ -197,53 +197,49 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
       endIcon,
       children,
       iconPosition: iconPositionProp,
-      ...props
+      ...props // Destructure props to exclude startIcon and endIcon
     },
     ref
   ) => {
     const Comp = asChild ? Slot : "button";
-    
+
     // Fix the icon position logic
-    // If iconPosition is explicitly provided, use that
-    // Otherwise, if endIcon is present but startIcon is not, use 'right'
-    // Otherwise default to 'left'
     const iconPosition = iconPositionProp || (endIcon && !startIcon ? "right" : "left");
-    
+
     const hasStartIcon = Boolean(startIcon);
     const hasEndIcon = Boolean(endIcon);
     const isIconOnly = !children && (hasStartIcon || hasEndIcon);
     const isLink = variant === "link";
-    
+
     // Automatically select icon size variant if it's an icon-only button
-    // Don't apply icon-only sizes to link variant
     let effectiveSize = size;
-    if (isIconOnly && !String(size).startsWith('icon-') && !isLink) {
-      if (size === 'sm') effectiveSize = 'icon-sm';
-      else if (size === 'lg') effectiveSize = 'icon-lg';
-      else effectiveSize = 'icon-md'; // Default to medium if unspecified
+    if (isIconOnly && !String(size).startsWith("icon-") && !isLink) {
+      if (size === "sm") effectiveSize = "icon-sm";
+      else if (size === "lg") effectiveSize = "icon-lg";
+      else effectiveSize = "icon-md"; // Default to medium if unspecified
     }
-    
+
     return (
       <Comp
-        className={cn(buttonVariants({ 
-          variant, 
-          size: effectiveSize, 
-          fullWidth, 
-          iconPosition,
-          hasStartIcon: !isIconOnly && hasStartIcon,
-          hasEndIcon: !isIconOnly && hasEndIcon,
-          className 
-        }))}
+        className={cn(
+          buttonVariants({
+            variant,
+            size: effectiveSize,
+            fullWidth,
+            iconPosition,
+            hasStartIcon: !isIconOnly && hasStartIcon,
+            hasEndIcon: !isIconOnly && hasEndIcon,
+            className,
+          })
+        )}
         ref={ref}
-        {...props}
+        {...props} // Spread remaining props (excluding startIcon and endIcon)
       >
         {isIconOnly ? (
-          // For icon-only buttons, just render the icon
           <span className="flex items-center justify-center">
             {startIcon || endIcon}
           </span>
         ) : (
-          // For regular buttons with text and optional icons
           <>
             {iconPosition === "left" && hasStartIcon && (
               <span className="shrink-0">{startIcon}</span>

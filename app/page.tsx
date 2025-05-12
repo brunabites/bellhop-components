@@ -1,56 +1,118 @@
-import Link from "next/link";
-import { Button } from "@/components/ui/button";
-import {
-  PageHeader,
-  PageHeaderDescription,
-  PageHeaderHeading,
-} from "@/components/page-header";
+"use client";
 
-const title = "Bellhop Experiments.";
-const description = "Bellhop themed components.";
+import * as React from "react";
 
-export default function Home() {
-  return (
-    <section>
-      <div className="container-wrappe">
-        <div className="container flex flex-col items-start gap-1 py-8 md:py-10 lg:py-12">
-          <PageHeader>
-            <PageHeaderHeading>{title}</PageHeaderHeading>
-            <PageHeaderDescription>{description}</PageHeaderDescription>
-          </PageHeader>
+import { columns } from "@/components/columns";
+import { DataTable } from "@/components/data-table";
 
-          <div className="flex gap-4 items-center flex-col sm:flex-row px-8 py-8">
+import { SideMenu } from "@/components/sidemenu-legacy";
+import HeaderLegacy from "@/components/header-legacy";
 
-            <Button variant="outline">
-              <Link href="/dashboard">Dashboard</Link>
-            </Button>
+const data =[
+  {
+    id: "Task-5101",
+    taskName: "Finalize Q3 report",
+    status: "Pending",
+    dueDate: "2024-08-01",
+    assignedTo: "Alice",
+    priority: "High",
+  },
+  {
+    id: "Task-5102",
+    taskName: "Client follow-up call",
+    status: "In Progress",
+    dueDate: "2024-07-29",
+    assignedTo: "Bob",
+    priority: "Medium",
+  },
+  {
+    id: "Task-5103",
+    taskName: "Update website copy",
+    status: "Done",
+    dueDate: "2024-07-22",
+    assignedTo: "Charlie",
+    priority: "Low",
+  },
+  {
+    id: "Task-5104",
+    taskName: "Prepare presentation slides",
+    status: "Pending",
+    dueDate: "2024-08-05",
+    assignedTo: "Alice",
+    priority: "High",
+  },
+  {
+    id: "Task-5105",
+    taskName: "System maintenance check",
+    status: "In Progress",
+    dueDate: "2024-07-30",
+    assignedTo: "David",
+    priority: "Medium",
+  },
+  {
+    id: "Task-5106",
+    taskName: "Organize team meeting",
+    status: "Pending",
+    dueDate: "2024-08-10",
+    assignedTo: "Eve",
+    priority: "Low",
+  },
+  {
+    id: "Task-5107",
+    taskName: "Review project proposal",
+    status: "Done",
+    dueDate: "2024-07-20",
+    assignedTo: "Frank",
+    priority: "Medium",
+  },
+  {
+    id: "Task-5108",
+    taskName: "Develop new feature",
+    status: "In Progress",
+    dueDate: "2024-08-15",
+    assignedTo: "Grace",
+    priority: "High",
+  },
+  {
+    id: "Task-5109",
+    taskName: "Fix security vulnerabilities",
+    status: "Pending",
+    dueDate: "2024-08-12",
+    assignedTo: "Alice",
+    priority: "High",
+  },
+  {
+    id: "Task-5110",
+    taskName: "Update user documentation",
+    status: "Done",
+    dueDate: "2024-07-25",
+    assignedTo: "Bob",
+    priority: "Low",
+  }
+];
 
-            <Button variant="outline">
-              <Link href="/mail">Email</Link>
-            </Button>
+export default async function Page() {
+ return (
+    <div className="flex flex-col h-screen bg-muted/80">
+      <HeaderLegacy logoVariant="psSymbol" />
 
-            <Button variant="outline">
-              <Link href="/tasks">Tasks</Link>
-            </Button>
+      <div className="flex flex-1 overflow-hidden">
+        <div className="flex-none bg-sidebar-background shadow-md">
+          <SideMenu variant="ps" />
+        </div>
 
-            <Button variant="outline">
-              <Link href="/login">Login</Link>
-            </Button>
-
-            <Button variant="outline">
-              <Link href="/buttons">Buttons</Link>
-            </Button>
-
-            <Button variant="outline">
-              <Link href="/showcase">Showcase</Link>
-            </Button>
-
-            <Button variant="outline">
-              <Link href="/showcase-plus">Showcase +</Link>
-            </Button>
+        <div className="flex-1 p-4 md:gap-6 md:p-6 overflow-y-auto">
+          <div className="flex flex-col p-4 lg:p-6 gap-4 bg-card rounded-xl shadow-md">
+            <div className="page-header relative">
+              <h1 className="text-xl font-semibold">Tasks</h1>
+              <p className="text-xs font-regular text-muted-foreground">Follow your daily tasks and make the most of your day.</p>
+            </div>
+            <div>
+              <DataTable data={data} columns={columns} />
+            </div>
           </div>
         </div>
       </div>
-    </section>
+    </div>
   );
 }

@@ -1,239 +1,458 @@
 {
-  "components": [
+  "$schema": "https://ui.shadcn.com/schema/registry.json",
+  "name": "bellhop",
+  "homepage": "http://localhost:3000",
+  "items": [
     {
-      "name": "Button",
-      "type": "ui",
-      "path": "src/ui/components/Button.tsx",
-      "description": "Interactive clickable element that triggers an action or event.",
-      "schema": {
-        "props": {
-          "variant": {
-            "type": "enum",
-            "required": false,
-            "default": "default",
-            "values": [
-              "default",
-              "secondaryBrand",
-              "secondary",
-              "outlineBrand",
-              "outline",
-              "destructive",
-              "destructiveOutline",
-              "success",
-              "successOutline",
-              "ghost",
-              "link"
-            ],
-            "description": "The visual style variant of the button"
-          },
-          "size": {
-            "type": "enum",
-            "required": false,
-            "default": "md",
-            "values": [
-              "sm",
-              "md",
-              "lg",
-              "icon-sm",
-              "icon-md",
-              "icon-lg"
-            ],
-            "description": "The size of the button"
-          },
-          "iconPosition": {
-            "type": "enum",
-            "required": false,
-            "default": "left",
-            "values": [
-              "left",
-              "right"
-            ],
-            "description": "The position of the icon relative to the text"
-          },
-          "fullWidth": {
-            "type": "boolean",
-            "required": false,
-            "default": false,
-            "description": "Whether the button should take up the full width of its container"
-          },
-          "asChild": {
-            "type": "boolean",
-            "required": false,
-            "default": false,
-            "description": "Whether to render as a child component"
-          },
-          "startIcon": {
-            "type": "node",
-            "required": false,
-            "description": "Icon to display at the start of the button"
-          },
-          "endIcon": {
-            "type": "node",
-            "required": false,
-            "description": "Icon to display at the end of the button"
-          }
-        },
-        "zodSchema": "import * as z from 'zod';\n\nexport const buttonVariantSchema = z.enum([\n  'default',\n  'secondaryBrand',\n  'secondary',\n  'outlineBrand',\n  'outline',\n  'destructive',\n  'destructiveOutline',\n  'success',\n  'successOutline',\n  'ghost',\n  'link'\n]);\n\nexport const buttonSizeSchema = z.enum([\n  'sm',\n  'md',\n  'lg',\n  'icon-sm',\n  'icon-md',\n  'icon-lg'\n]);\n\nexport const buttonIconPositionSchema = z.enum([\n  'left',\n  'right'\n]);\n\nexport const buttonSchema = z.object({\n  variant: buttonVariantSchema.optional().default('default'),\n  size: buttonSizeSchema.optional().default('md'),\n  iconPosition: buttonIconPositionSchema.optional().default('left'),\n  fullWidth: z.boolean().optional().default(false),\n  asChild: z.boolean().optional().default(false),\n  startIcon: z.any().optional(),\n  endIcon: z.any().optional()\n});"
-      },
-      "dependencies": [
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "theme",
+      "type": "registry:theme",
+      "author": "Actabl Design",
+      "title": "Bellhop, indigo based theme",
+      "description": "Bellhop is a theme for shadcn/ui that implements the indigo color scheme.",
+      "docs": "Don't forget to download fonts and import it in your project.",
+      "registryDependencies": ["http://localhost:3000/r/colors.json"],
+      "files": [
         {
-          "name": "@radix-ui/react-slot",
-          "version": "^1.0.0",
-          "type": "npm"
-        },
-        {
-          "name": "class-variance-authority",
-          "version": "^0.7.0",
-          "type": "npm"
-        },
-        {
-          "name": "tailwind-merge",
-          "version": "^2.0.0",
-          "type": "npm"
-        },
-        {
-          "name": "clsx",
-          "version": "^2.0.0",
-          "type": "npm"
+          "path": "src/registry/bellhop/theme/bellhop.css",
+          "type": "registry:file",
+          "target": "~/styles/bellhop.css"
         }
       ],
-      "classNames": {
-        "base": "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-lg font-medium transition-all disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-auto shrink-0 [&_svg]:shrink-0 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-ring/90 aria-invalid:ring-destructive/20",
-        "variants": {
-          "variant": {
-            "default": "bg-primary text-primary-foreground hover:bg-primary-hover",
-            "secondaryBrand": "bg-indigo-50 text-primary hover:bg-indigo-100",
-            "secondary": "bg-secondary text-secondary-foreground hover:bg-gray-300",
-            "outlineBrand": "border border-indigo-300 text-primary hover:bg-indigo-100",
-            "outline": "border bg-transparent text-secondary-foreground hover:bg-gray-100",
-            "destructive": "bg-destructive text-white hover:bg-red-800 focus-visible:ring-destructive/60",
-            "destructiveOutline": "border border-red-300 text-destructive hover:bg-red-50 focus-visible:ring-destructive/60",
-            "success": "bg-success text-white hover:bg-green-800 focus-visible:ring-success/60",
-            "successOutline": "border border-green-300 text-success hover:bg-green-50 focus-visible:ring-success/60",
-            "ghost": "text-secondary-foreground hover:bg-accent hover:bg-gray-100",
-            "link": "text-primary underline-offset-4 hover:underline p-0 h-auto"
-          },
-          "size": {
-            "md": "h-10 px-4 py-2 [&_svg:not([class*='size-'])]:size-5",
-            "sm": "h-8 px-3 py-1.5 text-xs gap-1.5 [&_svg:not([class*='size-'])]:size-4",
-            "lg": "h-12 px-5 py-2.5 text-base [&_svg:not([class*='size-'])]:size-5",
-            "icon-sm": "size-9 p-0 [&_svg:not([class*='size-'])]:size-4",
-            "icon-md": "size-10 p-0 [&_svg:not([class*='size-'])]:size-5",
-            "icon-lg": "size-12 p-0 [&_svg:not([class*='size-'])]:size-5"
-          },
-          "iconPosition": {
-            "left": "flex-row",
-            "right": "flex-row"
-          },
-          "fullWidth": {
-            "true": "w-full"
-          },
-          "hasStartIcon": {
-            "true": ""
-          },
-          "hasEndIcon": {
-            "true": ""
-          }
+      "cssVars": {
+        "theme": {
+          "--font-sans": "var(--font-inter)",
+          "--text-xs": "0.85rem",
+          "--text-sm": "0.95rem",
+          "--text-base": "1rem",
+          "--text-lg": "1.125rem",
+          "--radius": "0.625rem",
+          "--gap-smaller": "4px"
         },
-        "defaultVariants": {
-          "variant": "default",
-          "size": "md",
-          "iconPosition": "left",
-          "fullWidth": false,
-          "hasStartIcon": false,
-          "hasEndIcon": false
+        "dark": {
+          "--color-background": "var(--color-white)",
+          "--color-foreground": "var(--neutral-900)",
+          "--color-bg": "var(--color-white)",
+          "--color-fg": "var(--neutral-900)",
+          "--color-bg-inverted": "var(--neutral-900)",
+          "--color-fg-inverted": "var(--white)",
+          "--color-card": "var(--color-white)",
+          "--color-card-foreground": "var(--neutral-800)",
+          "--color-popover": "var(--color-white)",
+          "--color-popover-foreground": "var(--neutral-900)",
+          "--color-primary": "var(--indigo-600)",
+          "--color-primary-hover": "var(--indigo-700)",
+          "--color-primary-foreground": "var(--color-white)",
+          "--color-secondary": "var(--neutral-200)",
+          "--color-secondary-foreground": "var(--neutral-800)",
+          "--color-muted": "var(--neutral-50)",
+          "--color-muted-foreground": "var(--neutral-800)",
+          "--color-accent": "var(--indigo-100)",
+          "--color-accent-foreground": "var(--indigo-700)",
+          "--color-destructive": "var(--red-700)",
+          "--color-success": "var(--green-700)",
+          "--border-color": "var(--neutral-100)",
+          "--color-input": "var(--neutral-300)",
+          "--color-ring": "var(--indigo-700)",
+          "--color-ring-destructive": "var(--red-700)",
+          "--color-ring-success": "var(--green-700)",
+          "--color-chart-1": "var(--rose-500)",
+          "--color-chart-2": "var(--indigo-500)",
+          "--color-chart-3": "var(--violet-400)",
+          "--color-chart-4": "var(--rose-600)",
+          "--color-chart-5": "var(--violet-600)",
+          "--color-sidebar": "var(--white)",
+          "--color-sidebar-foreground": "var(--neutral-700)",
+          "--color-sidebar-primary": "var(--indigo-300)",
+          "--color-sidebar-primary-foreground": "var(--indigo-800)",
+          "--color-sidebar-accent": "var(--indigo-100)",
+          "--color-sidebar-accent-foreground": "var(--indigo-700)",
+          "--color-sidebar-border": "var(--neutral-200)",
+          "--color-sidebar-ring": "var(--indigo-400)"
         },
-        "compoundVariants": [
-          {
-            "iconPosition": "left",
-            "size": "sm",
-            "class": "gap-1"
-          },
-          {
-            "iconPosition": "right",
-            "size": "sm",
-            "class": "gap-1"
-          },
-          {
-            "iconPosition": "left",
-            "size": "md",
-            "class": "gap-1"
-          },
-          {
-            "iconPosition": "right",
-            "size": "md",
-            "class": "gap-1"
-          },
-          {
-            "iconPosition": "left",
-            "size": "lg",
-            "class": "gap-1.5"
-          },
-          {
-            "iconPosition": "right",
-            "size": "lg",
-            "class": "gap-1.5"
-          },
-          {
-            "size": "sm",
-            "hasStartIcon": true,
-            "class": "pl-2.5 pr-3"
-          },
-          {
-            "size": "sm",
-            "hasEndIcon": true,
-            "class": "pl-3 pr-2.5"
-          },
-          {
-            "size": "md",
-            "hasStartIcon": true,
-            "class": "pl-3.5 pr-4"
-          },
-          {
-            "size": "md",
-            "hasEndIcon": true,
-            "class": "pl-4 pr-3.5"
-          },
-          {
-            "size": "lg",
-            "hasStartIcon": true,
-            "class": "pl-4 pr-5"
-          },
-          {
-            "size": "lg",
-            "hasEndIcon": true,
-            "class": "pl-5 pr-4"
-          },
-          {
-            "hasStartIcon": true,
-            "hasEndIcon": true,
-            "size": "sm",
-            "class": "pl-2.5 pr-2.5"
-          },
-          {
-            "hasStartIcon": true,
-            "hasEndIcon": true,
-            "size": "md",
-            "class": "pl-3.5 pr-3.5"
-          },
-          {
-            "hasStartIcon": true,
-            "hasEndIcon": true,
-            "size": "lg",
-            "class": "pl-4 pr-4"
-          },
-          {
-            "variant": "link",
-            "hasStartIcon": true,
-            "class": "gap-1.5 p-0 h-auto"
-          },
-          {
-            "variant": "link",
-            "hasEndIcon": true,
-            "class": "gap-1.5 p-0 h-auto"
-          }
-        ]
+        "light": {
+          "--color-background": "var(--color-white)",
+          "--color-foreground": "var(--neutral-900)",
+          "--color-bg": "var(--color-white)",
+          "--color-fg": "var(--neutral-900)",
+          "--color-bg-inverted": "var(--neutral-900)",
+          "--color-fg-inverted": "var(--white)",
+          "--color-card": "var(--color-white)",
+          "--color-card-foreground": "var(--neutral-800)",
+          "--color-popover": "var(--color-white)",
+          "--color-popover-foreground": "var(--neutral-900)",
+          "--color-primary": "var(--indigo-600)",
+          "--color-primary-hover": "var(--indigo-700)",
+          "--color-primary-foreground": "var(--color-white)",
+          "--color-secondary": "var(--neutral-200)",
+          "--color-secondary-foreground": "var(--neutral-800)",
+          "--color-muted": "var(--neutral-50)",
+          "--color-muted-foreground": "var(--neutral-800)",
+          "--color-accent": "var(--indigo-100)",
+          "--color-accent-foreground": "var(--indigo-700)",
+          "--color-destructive": "var(--red-700)",
+          "--color-success": "var(--green-700)",
+          "--border-color": "var(--neutral-100)",
+          "--color-input": "var(--neutral-300)",
+          "--color-ring": "var(--indigo-700)",
+          "--color-ring-destructive": "var(--red-700)",
+          "--color-ring-success": "var(--green-700)",
+          "--color-chart-1": "var(--rose-500)",
+          "--color-chart-2": "var(--indigo-500)",
+          "--color-chart-3": "var(--violet-400)",
+          "--color-chart-4": "var(--rose-600)",
+          "--color-chart-5": "var(--violet-600)",
+          "--color-sidebar": "var(--white)",
+          "--color-sidebar-foreground": "var(--neutral-700)",
+          "--color-sidebar-primary": "var(--indigo-300)",
+          "--color-sidebar-primary-foreground": "var(--indigo-800)",
+          "--color-sidebar-accent": "var(--indigo-100)",
+          "--color-sidebar-accent-foreground": "var(--indigo-700)",
+          "--color-sidebar-border": "var(--neutral-200)",
+          "--color-sidebar-ring": "var(--indigo-400)"
+        }
       }
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "colors",
+      "type": "registry:theme",
+      "author": "Actabl Design",
+      "title": "Bellhop indigo colors",
+      "description": "Bellhop indigo colors for shadcn/ui.",
+      "cssVars": {
+        "theme": {
+          "--neutral-50": "oklch(98.5% 0.002 240)",
+          "--neutral-100": "oklch(97% 0.003 240)",
+          "--neutral-200": "oklch(94% 0.006 240)",
+          "--neutral-300": "oklch(88% 0.01 240)",
+          "--neutral-400": "oklch(78% 0.02 240)",
+          "--neutral-500": "oklch(58% 0.03 240)",
+          "--neutral-600": "oklch(48% 0.035 240)",
+          "--neutral-700": "oklch(40% 0.037 240)",
+          "--neutral-800": "oklch(34% 0.033 240)",
+          "--neutral-900": "oklch(26% 0.025 240)",
+          "--neutral-950": "oklch(14% 0.01 240)",
+          "--indigo-50": "oklch(97% 0.02 260)",
+          "--indigo-100": "oklch(95% 0.03 260)",
+          "--indigo-200": "oklch(92% 0.055 260)",
+          "--indigo-300": "oklch(84% 0.1 260)",
+          "--indigo-400": "oklch(74% 0.15 260)",
+          "--indigo-500": "oklch(67% 0.18 260)",
+          "--indigo-600": "oklch(46% 0.217 267)",
+          "--indigo-700": "oklch(44% 0.24 270)",
+          "--indigo-800": "oklch(38% 0.22 275)",
+          "--indigo-900": "oklch(33% 0.18 275)",
+          "--indigo-950": "oklch(27% 0.15 275)",
+          "--red-50": "oklch(97% 0.01 20)",
+          "--red-100": "oklch(94% 0.025 20)",
+          "--red-200": "oklch(90% 0.055 15)",
+          "--red-300": "oklch(86% 0.08 15)",
+          "--red-400": "oklch(78% 0.14 15)",
+          "--red-500": "oklch(71% 0.19 15)",
+          "--red-600": "oklch(64% 0.23 18)",
+          "--red-700": "oklch(53% 0.22 25)",
+          "--red-800": "oklch(46% 0.19 25)",
+          "--red-900": "oklch(40% 0.16 25)",
+          "--red-950": "oklch(33% 0.13 25)",
+          "--amber-50": "oklch(98% 0.02 85)",
+          "--amber-100": "oklch(96% 0.04 90)",
+          "--amber-200": "oklch(92% 0.09 90)",
+          "--amber-300": "oklch(87% 0.15 85)",
+          "--amber-400": "oklch(83% 0.19 80)",
+          "--amber-500": "oklch(76% 0.19 75)",
+          "--amber-600": "oklch(67% 0.18 65)",
+          "--amber-700": "oklch(58% 0.17 55)",
+          "--amber-800": "oklch(50% 0.14 50)",
+          "--amber-900": "oklch(42% 0.11 45)",
+          "--amber-950": "oklch(36% 0.09 40)",
+          "--green-50": "oklch(98% 0.015 155)",
+          "--green-100": "oklch(96% 0.04 155)",
+          "--green-200": "oklch(92% 0.08 150)",
+          "--green-300": "oklch(86% 0.14 150)",
+          "--green-400": "oklch(78% 0.2 150)",
+          "--green-500": "oklch(72% 0.22 150)",
+          "--green-600": "oklch(62% 0.19 150)",
+          "--green-700": "oklch(52% 0.15 150)",
+          "--green-800": "oklch(44% 0.12 150)",
+          "--green-900": "oklch(38% 0.09 155)",
+          "--green-950": "oklch(32% 0.06 155)",
+          "--rose-50": "oklch(96% 0.015 10)",
+          "--rose-100": "oklch(94% 0.03 10)",
+          "--rose-200": "oklch(90% 0.058 10)",
+          "--rose-300": "oklch(82% 0.11 10)",
+          "--rose-400": "oklch(76% 0.16 15)",
+          "--rose-500": "oklch(70% 0.19 15)",
+          "--rose-600": "oklch(64% 0.23 15)",
+          "--rose-700": "oklch(55% 0.22 10)",
+          "--rose-800": "oklch(49% 0.2 10)",
+          "--rose-900": "oklch(42% 0.17 10)",
+          "--rose-950": "oklch(30% 0.12 10)",
+          "--blue-50": "oklch(97% 0.015 250)",
+          "--blue-100": "oklch(94% 0.03 250)",
+          "--blue-200": "oklch(89% 0.06 250)",
+          "--blue-300": "oklch(82% 0.11 250)",
+          "--blue-400": "oklch(75% 0.16 250)",
+          "--blue-500": "oklch(68% 0.17 250)",
+          "--blue-600": "oklch(58% 0.16 250)",
+          "--blue-700": "oklch(50% 0.14 250)",
+          "--blue-800": "oklch(44% 0.12 250)",
+          "--blue-900": "oklch(38% 0.09 250)",
+          "--blue-950": "oklch(30% 0.07 250)",
+          "--violet-50": "oklch(96% 0.015 310)",
+          "--violet-100": "oklch(94% 0.03 310)",
+          "--violet-200": "oklch(87% 0.06 310)",
+          "--violet-300": "oklch(82% 0.11 310)",
+          "--violet-400": "oklch(75% 0.17 310)",
+          "--violet-500": "oklch(67% 0.21 310)",
+          "--violet-600": "oklch(58% 0.22 310)",
+          "--violet-700": "oklch(51% 0.2 310)",
+          "--violet-800": "oklch(45% 0.18 310)",
+          "--violet-900": "oklch(40% 0.15 310)",
+          "--violet-950": "oklch(32% 0.12 310)"
+        }
+      }
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "badge",
+      "type": "registry:ui",
+      "title": "Custom Badge",
+      "author": "Actabl Design",
+      "description": "A customizable badge component with support for variants, sizes, icons, dots, avatars, and close buttons.",
+      "dependencies": [
+        "lucide-react",
+        "class-variance-authority",
+        "react",
+        "@radix-ui/react-slot"
+      ],
+      "registryDependencies": ["utils"],
+      "files": [
+        {
+          "path": "src/registry/bellhop/components/ui/badge.tsx",
+          "content": "\"use client\";\n\nimport { jsx as _jsx } from \"react/jsx-runtime\";\nimport React, { createContext, useContext } from \"react\";\n\nimport { X } from \"lucide-react\";\nimport { cva, VariantProps } from \"class-variance-authority\";\nimport { cn } from \"@/lib/utils\";\nimport { Slot } from \"@radix-ui/react-slot\";\n\nconst BadgeContext = createContext<{ size: \"sm\" | \"md\" }>({ size: \"sm\" });\n\nconst badgeVariants = cva(\n  \"inline-flex items-center justify-center gap-1 font-medium transition-colors w-fit whitespace-nowrap shrink-0 inline-flex [&>svg]:size-3 [&>svg]:gap-1 [&>svg]:pointer-events-none focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 aria-invalid:ring-destructive/20 aria-invalid:border-destructive transition-[color,box-shadow] overflow-hidden\",\n  {\n    variants: {\n      variant: {\n        solid: \"border-transparent\",\n        outline: \"border\",\n        ghost: \"border\",\n      },\n      color: {\n        white: \"\",\n        neutral: \"\",\n        indigo: \"\",\n        blue: \"\",\n        red: \"\",\n        pink: \"\",\n        orange: \"\",\n        yellow: \"\",\n        green: \"\",\n        teal: \"\",\n        purple: \"\",\n      },\n      size: {\n        sm: \"text-xs rounded-full px-2 py-0.5 h-6\",\n        md: \"text-sm rounded-full px-3 py-1 h-7\",\n      },\n    },\n    compoundVariants: [\n      {\n        variant: \"solid\",\n        color: \"white\",\n        className: \"bg-neutral-100 text-neutral-800\"\n      },\n      {\n        variant: \"solid\",\n        color: \"neutral\",\n        className: \"bg-neutral-200/90 text-neutral-800\"\n      },\n      {\n        variant: \"solid\",\n        color: \"indigo\",\n        className: \"bg-indigo-200 text-indigo-800\"\n      },\n      {\n        variant: \"solid\",\n        color: \"blue\",\n        className: \"bg-blue-200 text-blue-800\"\n      },\n      {\n        variant: \"solid\",\n        color: \"red\",\n        className: \"bg-red-200 text-red-800\"\n      },\n      {\n        variant: \"solid\",\n        color: \"pink\",\n        className: \"bg-pink-200 text-pink-800\"\n      },\n      {\n        variant: \"solid\",\n        color: \"orange\",\n        className: \"bg-orange-200 text-orange-800\"\n      },\n      {\n        variant: \"solid\",\n        color: \"yellow\",\n        className: \"bg-amber-200 text-amber-800\"\n      },\n      {\n        variant: \"solid\",\n        color: \"green\",\n        className: \"bg-green-200 text-green-800\"\n      },\n      {\n        variant: \"solid\",\n        color: \"teal\",\n        className: \"bg-teal-200 text-teal-800\"\n      },\n      {\n        variant: \"solid\",\n        color: \"purple\",\n        className: \"bg-purple-200 text-purple-800\"\n      },\n      {\n        variant: \"outline\",\n        color: \"white\",\n        className: \"border-neutral-300 bg-neutral-50/90 text-neutral-800\"\n      },\n      {\n        variant: \"outline\",\n        color: \"neutral\",\n        className: \"border-neutral-300 bg-neutral-50 text-neutral-800\"\n      },\n      {\n        variant: \"outline\",\n        color: \"indigo\",\n        className: \"border-indigo-300 bg-indigo-50 text-indigo-800\"\n      },\n      {\n        variant: \"outline\",\n        color: \"blue\",\n        className: \"border-blue-300 bg-blue-50 text-blue-800\"\n      },\n      {\n        variant: \"outline\",\n        color: \"red\",\n        className: \"border-red-300 bg-red-50 text-red-800\"\n      },\n      {\n        variant: \"outline\",\n        color: \"pink\",\n        className: \"border-pink-300 bg-pink-50 text-pink-800\"\n      },\n      {\n        variant: \"outline\",\n        color: \"orange\",\n        className: \"border-orange-300 bg-orange-50 text-orange-800\"\n      },\n      {\n        variant: \"outline\",\n        color: \"yellow\",\n        className: \"border-amber-300 bg-amber-50 text-amber-800\"\n      },\n      {\n        variant: \"outline\",\n        color: \"green\",\n        className: \"border-green-300 bg-green-50 text-green-800\"\n      },\n      {\n        variant: \"outline\",\n        color: \"teal\",\n        className: \"border-teal-300 bg-teal-50 text-teal-800\"\n      },\n      {\n        variant: \"outline\",\n        color: \"purple\",\n        className: \"border-purple-300 bg-purple-50 text-purple-800\"\n      },\n      {\n        variant: \"ghost\",\n        color: \"white\",\n        className: \"border-neutral-100 bg-transparent text-neutral-700\"\n      },\n      {\n        variant: \"ghost\",\n        color: \"neutral\",\n        className: \"border-neutral-300 bg-transparent text-neutral-800\"\n      },\n      {\n        variant: \"ghost\",\n        color: \"indigo\",\n        className: \"border-indigo-300 bg-transparent text-indigo-800\"\n      },\n      {\n        variant: \"ghost\",\n        color: \"blue\",\n        className: \"border-blue-300 bg-transparent text-blue-800\"\n      },\n      {\n        variant: \"ghost\",\n        color: \"red\",\n        className: \"border-red-300 bg-transparent text-red-800\"\n      },\n      {\n        variant: \"ghost\",\n        color: \"pink\",\n        className: \"border-pink-300 bg-transparent text-pink-800\"\n      },\n      {\n        variant: \"ghost\",\n        color: \"orange\",\n        className: \"border-orange-300 bg-transparent text-orange-800\"\n      },\n      {\n        variant: \"ghost\",\n        color: \"yellow\",\n        className: \"border-amber-300 bg-transparent text-amber-800\"\n      },\n      {\n        variant: \"ghost\",\n        color: \"green\",\n        className: \"border-green-300 bg-transparent text-green-800\"\n      },\n      {\n        variant: \"ghost\",\n        color: \"teal\",\n        className: \"border-teal-300 bg-transparent text-teal-800\"\n      },\n      {\n        variant: \"ghost\",\n        color: \"purple\",\n        className: \"border-purple-300 bg-transparent text-purple-800\"\n      }\n    ],\n    defaultVariants: {\n      variant: \"solid\",\n      color: \"neutral\",\n      size: \"sm\",\n    },\n  }\n);\n\nexport interface BadgeProps\n  extends Omit<React.HTMLAttributes<HTMLElement>, \"color\">,\n    VariantProps<typeof badgeVariants> {\n  asChild?: boolean;\n}\n\nfunction Badge({\n  className,\n  variant,\n  color,\n  size = \"sm\",\n  asChild = false,\n  ...props\n}: BadgeProps) {\n  const Comp = asChild ? Slot : \"span\";\n\n  const validSize = size === \"sm\" || size === \"md\" ? size : \"sm\";\n\n  return (\n    <BadgeContext.Provider value={{ size: validSize }}>\n      <Comp\n        data-slot=\"badge\"\n        className={cn(\n          badgeVariants({\n            variant,\n            color,\n            size: validSize,\n          }),\n          className\n        )}\n        {...props}\n      />\n    </BadgeContext.Provider>\n  );\n}\n\nconst BadgeIcon = ({\n  children,\n  className,\n  ...props\n}: React.HTMLAttributes<HTMLSpanElement> & {\n  children: React.ReactElement<React.SVGProps<SVGSVGElement>>;\n}) => {\n  const { size } = useContext(BadgeContext);\n  const sizeClasses = size === \"sm\" ? \"w-3 h-3\" : \"!w-4 !h-4\";\n\n  return (\n    <span\n      className={cn(\n        \"inline-block\",\n        sizeClasses,\n        className\n      )}\n      {...props}\n    >\n      {React.isValidElement(children) &&\n        React.cloneElement(children, {\n          className: cn(sizeClasses, children.props.className),\n        })}\n    </span>\n  );\n};\n\nconst BadgeDot = ({\n  className,\n  color = \"neutral\",\n  ...props\n}: React.HTMLAttributes<HTMLSpanElement> & {\n  color?: string;\n}) => {\n  const dotColor = \n    color === \"neutral\" ? \"bg-neutral-700\" :\n    color === \"blue\" ? \"bg-blue-700\" :\n    color === \"indigo\" ? \"bg-indigo-800\" :\n    color === \"red\" ? \"bg-red-700\" :\n    color === \"pink\" ? \"bg-pink-700\" :\n    color === \"orange\" ? \"bg-orange-700\" :\n    color === \"yellow\" ? \"bg-amber-700\" :\n    color === \"green\" ? \"bg-green-700\" :\n    color === \"teal\" ? \"bg-teal-700\" :\n    color === \"purple\" ? \"bg-purple-700\":\n    \"bg-neutral-700\";\n  return (\n    <span\n      className={cn(\n        \"inline-block rounded-full w-1.5 h-1.5\",\n        dotColor,\n        className\n      )}\n      {...props}\n    />\n  );\n};\n\nconst BadgeAvatar = ({\n  src,\n  alt = \"Avatar\",\n  size = \"sm\",\n  className,\n  ...props\n}: React.ImgHTMLAttributes<HTMLImageElement> & {\n  size?: \"sm\" | \"md\";\n}) => {\n  return (\n    <span className=\"flex\">\n      <img \n        src={src}\n        alt={alt}\n        className={cn(\n          \"rounded-full object-cover\",\n          size === \"sm\" ? \"w-4 h-4\" : \"w-5 h-5\",\n          className\n        )}\n        {...props}\n      />\n    </span>\n  );\n};\n\nconst BadgeClose = ({\n  size = \"sm\",\n  onClick,\n  className,\n  ...props\n}: React.ButtonHTMLAttributes<HTMLButtonElement> & {\n  size?: \"sm\" | \"md\";\n}) => {\n  return (\n    <button \n      onClick={(e) => {\n        e.stopPropagation();\n        onClick?.(e);\n      }}\n      className={cn(\n        \"rounded-full hover:bg-neutral-200 flex items-center justify-center w-4 h-4\",\n        className\n      )}\n      {...props}\n    >\n      <X className={\"w-4 h-4\"} />\n    </button>\n  );\n};\n\nBadge.Icon = BadgeIcon;\nBadge.Dot = BadgeDot;\nBadge.Avatar = BadgeAvatar;\nBadge.Close = BadgeClose;\n\nexport { Badge, badgeVariants };\n",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "button",
+      "type": "registry:ui",
+      "title": "Button",
+      "author": "Actabl Design",
+      "description": "A customizable button component with support for icons, variants, and sizes.",
+      "dependencies": [
+        "@radix-ui/react-slot",
+        "class-variance-authority",
+        "react"
+      ],
+      "registryDependencies": ["utils"],
+      "files": [
+        {
+          "path": "src/registry/bellhop/components/ui/button.tsx",
+          "content": "import * as React from \"react\";\nimport { Slot } from \"@radix-ui/react-slot\";\nimport { cva, type VariantProps } from \"class-variance-authority\";\n\nimport { cn } from \"@/lib/utils\";\n\nconst buttonVariants = cva(\n  \"inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-lg font-medium transition-all disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-auto shrink-0 [&_svg]:shrink-0 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-ring/90 aria-invalid:ring-destructive/20\",\n\n  {\n    variants: {\n      variant: {\n        default: \"bg-primary text-primary-foreground hover:bg-primary-hover\",\n        secondaryBrand: \"bg-indigo-50 text-primary hover:bg-indigo-100\",\n        secondary: \"bg-secondary text-secondary-foreground hover:bg-gray-300\",\n        outlineBrand: \"border border-indigo-300 text-primary hover:bg-indigo-100\",\n        outline: \"border border-neutral-600/20 bg-transparent text-secondary-foreground hover:bg-gray-200/50 \",\n        destructive: \"bg-destructive text-white hover:bg-red-800 focus-visible:ring-destructive/60\",\n        destructiveOutline: \"border border-red-300 text-destructive hover:bg-red-50 focus-visible:ring-destructive/60\",\n        success: \"bg-success text-white hover:bg-green-800 focus-visible:ring-success/60\",\n        successOutline: \"border border-green-300 text-success hover:bg-green-50 focus-visible:ring-success/60\",\n        ghost: \" text-secondary-foreground hover:bg-accent hover:bg-gray-200/50 \",\n        link: \"text-primary underline-offset-4 hover:underline p-0 h-auto\",\n      },\n      size: {\n        md: \"h-10 px-4 py-2 [&_svg:not([class*='size-'])]:size-5\",\n        sm: \"h-8 px-3 py-1.5 text-xs gap-1.5 [&_svg:not([class*='size-'])]:size-4\",\n        lg: \"h-12 px-5 py-2.5 text-base [&_svg:not([class*='size-'])]:size-5\",\n        \"icon-sm\": \"size-9 p-0 [&_svg:not([class*='size-'])]:size-4\",\n        \"icon-md\": \"size-10 p-0 [&_svg:not([class*='size-'])]:size-5\",\n        \"icon-lg\": \"size-12 p-0 [&_svg:not([class*='size-'])]:size-5\",\n      },\n      iconPosition: {\n        left: \"flex-row\",\n        right: \"flex-row\",\n      },\n      fullWidth: {\n        true: \"w-full\",\n      },\n      hasStartIcon: {\n        true: \"\",\n      },\n      hasEndIcon: {\n        true: \"\",\n      },\n    },\n    defaultVariants: {\n      variant: \"default\",\n      size: \"md\",\n      iconPosition: \"left\",\n      fullWidth: false,\n      hasStartIcon: false,\n      hasEndIcon: false,\n    },\n    compoundVariants: [\n      {\n        iconPosition: \"left\",\n        size: \"sm\",\n        class: \"gap-1\",\n      },\n      {\n        iconPosition: \"right\",\n        size: \"sm\",\n        class: \"gap-1\",\n      },\n      {\n        iconPosition: \"left\",\n        size: \"md\",\n        class: \"gap-1\",\n      },\n      {\n        iconPosition: \"right\",\n        size: \"md\",\n        class: \"gap-1\",\n      },\n      {\n        iconPosition: \"left\",\n        size: \"lg\",\n        class: \"gap-1.5\",\n      },\n      {\n        iconPosition: \"right\",\n        size: \"lg\",\n        class: \"gap-1.5\",\n      },\n      {\n        size: \"sm\",\n        hasStartIcon: true,\n        class: \"pl-2.5 pr-3\",\n      },\n      {\n        size: \"sm\",\n        hasEndIcon: true,\n        class: \"pl-3 pr-2.5\",\n      },\n      {\n        size: \"md\",\n        hasStartIcon: true,\n        class: \"pl-3.5 pr-4\",\n      },\n      {\n        size: \"md\",\n        hasEndIcon: true,\n        class: \"pl-4 pr-3.5\",\n      },\n      {\n        size: \"lg\",\n        hasStartIcon: true,\n        class: \"pl-4 pr-5\",\n      },\n      {\n        size: \"lg\",\n        hasEndIcon: true,\n        class: \"pl-5 pr-4\",\n      },\n      {\n        hasStartIcon: true,\n        hasEndIcon: true,\n        size: \"sm\",\n        class: \"pl-2.5 pr-2.5\",\n      },\n      {\n        hasStartIcon: true,\n        hasEndIcon: true,\n        size: \"md\",\n        class: \"pl-3.5 pr-3.5\",\n      },\n      {\n        hasStartIcon: true,\n        hasEndIcon: true,\n        size: \"lg\",\n        class: \"pl-4 pr-4\",\n      },\n      {\n        variant: \"link\",\n        hasStartIcon: true,\n        class: \"gap-1.5 p-0 h-auto\",\n      },\n      {\n        variant: \"link\",\n        hasEndIcon: true,\n        class: \"gap-1.5 p-0 h-auto\",\n      },\n    ],\n  }\n);\n\nexport interface ButtonProps\n  extends React.ButtonHTMLAttributes<HTMLButtonElement>,\n    VariantProps<typeof buttonVariants> {\n  asChild?: boolean;\n  startIcon?: React.ReactNode;\n  endIcon?: React.ReactNode;\n}\n\nconst Button = React.forwardRef<HTMLButtonElement, ButtonProps>(\n  (\n    {\n      className,\n      variant,\n      size,\n      fullWidth,\n      asChild = false,\n      startIcon,\n      endIcon,\n      children,\n      iconPosition: iconPositionProp,\n      ...props\n    },\n    ref\n  ) => {\n    const Comp = asChild ? Slot : \"button\";\n\n    const iconPosition = iconPositionProp || (endIcon && !startIcon ? \"right\" : \"left\");\n\n    const hasStartIcon = Boolean(startIcon);\n    const hasEndIcon = Boolean(endIcon);\n    const isIconOnly = !children && (hasStartIcon || hasEndIcon);\n    const isLink = variant === \"link\";\n\n    let effectiveSize = size;\n    if (isIconOnly && !String(size).startsWith(\"icon-\") && !isLink) {\n      if (size === \"sm\") effectiveSize = \"icon-sm\";\n      else if (size === \"lg\") effectiveSize = \"icon-lg\";\n      else effectiveSize = \"icon-md\";\n    }\n\n    return (\n      <Comp\n        className={cn(\n          buttonVariants({\n            variant,\n            size: effectiveSize,\n            fullWidth,\n            iconPosition,\n            hasStartIcon: !isIconOnly && hasStartIcon,\n            hasEndIcon: !isIconOnly && hasEndIcon,\n            className,\n          })\n        )}\n        ref={ref}\n        {...props}\n      >\n        {isIconOnly ? (\n          <span className=\"flex items-center justify-center\">\n            {startIcon || endIcon}\n          </span>\n        ) : (\n          <>\n            {iconPosition === \"left\" && hasStartIcon && (\n              <span className=\"shrink-0\">{startIcon}</span>\n            )}\n            {children}\n            {iconPosition === \"right\" && hasEndIcon && (\n              <span className=\"shrink-0\">{endIcon}</span>\n            )}\n          </>\n        )}\n      </Comp>\n    );\n  }\n);\n\nButton.displayName = \"Button\";\n\nexport { Button, buttonVariants };\n",
+          "type": "registry:ui",
+          "target": ""
+        }
+      ]
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "toaster",
+      "type": "registry:ui",
+      "title": "Toaster",
+      "author": "Actabl Design",
+      "description": "A customizable toaster component for displaying notifications with various styles and icons.",
+      "dependencies": ["sonner", "lucide-react"],
+      "files": [
+        {
+          "path": "src/registry/bellhop/components/ui/sonner.tsx",
+          "content": "\"use client\";\n\nimport { Toaster as Sonner, ToasterProps } from \"sonner\";\n\nimport { Info, LoaderCircle, CircleCheck, TriangleAlert, OctagonAlert } from \"lucide-react\";\n\nconst Toaster = ({ ...props }: ToasterProps) => {\n  return (\n    <Sonner\n      className=\"toaster group\"\n      toastOptions={{\n        classNames: {\n          toast: 'bg-popover text-popover-foreground shadow-lg  rounded-lg border p-4',\n          title: 'text-color-fg text-sm/5 font-semibold',\n          description: 'text-color-fg/80 text-sm/5 font-medium',\n          actionButton:\n              \"!h-8 !whitespace-nowrap !bg-primary ! rounded-lg !px-3 !font-medium !text-sm hover:bg-primary/90\",\n          cancelButton:\n              \"!h-8 !whitespace-nowrap ! rounded-lg !px-3 !font-medium !text-sm hover:bg-color-fg/10\",\n          loader: 'bg-color-fg/10',\n          closeButton: 'bg-color-fg/10 hover:bg-color-fg/20',\n        },\n      }}\n      icons={{\n        success: <CircleCheck size={20} />, \n        info: <Info size={20} />, \n        warning: <TriangleAlert size={20} />, \n        error: <OctagonAlert size={20} />, \n        loading: <LoaderCircle size={20} />,\n      }}\n      style={{\n        \"--normal-bg\": \"var(--color-popover)\",\n        \"--normal-text\": \"var(--color-popover-foreground)\",\n        \"--normal-border\": \"var(--border-input)\",\n      } as React.CSSProperties}\n      {...props}\n    />\n  );\n};\n\nexport { Toaster };\n",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "featured-icon",
+      "type": "registry:ui",
+      "title": "Featured Icon",
+      "author": "Actabl Design",
+      "description": "A reusable icon component with customizable color and aura effect.",
+      "dependencies": ["clsx", "lucide-react"],
+      "files": [
+        {
+          "path": "src/components/ui/featured-icon.tsx",
+          "content": "import React from \"react\";\nimport { LucideIcon } from \"lucide-react\"; // Import LucideIcon type\nimport clsx from \"clsx\"; // Utility for conditional class names\n\ninterface FeaturedIconProps {\n  color: string;\n  icon: LucideIcon;\n}\n\nconst FeaturedIcon: React.FC<FeaturedIconProps> = ({ color, icon: Icon }) => {\n  // Derive the outline color based on the provided color\n  const auraColor = color.replace(\"-600\", \"-200\");\n\n  return (\n    <>\n    <div\n      className={clsx(\n        \"inline-flex size-6 items-center justify-center rounded-full\",\n        `text-${color}`,\n        `bg-${auraColor}`\n      )}\n      style={{\n        boxShadow: `0 0 0 8px var(--color-${auraColor})`,\n      }}\n    >\n      <Icon size={16} className={`size-6 h-5 w-5 text-${color}`} />\n    </div>\n</>\n  );\n};\n\nexport default FeaturedIcon;\n",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "bellhop-container",
+      "type": "registry:component",
+      "title": "Bellhop Container",
+      "author": "Actabl Design",
+      "description": "A container component for the Bellhop application, including a header, side menu, and a data table.",
+      "dependencies": [
+        "lucide-react",
+        "@heroicons/react"
+      ],
+      "registryDependencies": [
+        "http://localhost:3000/r/featured-icon.json",
+        "http://localhost:3000/r/sidemenu-legacy.json",
+        "http://localhost:3000/r/header-legacy.json",
+        "http://localhost:3000/r/data-table.json",
+        "http://localhost:3000/r/columns.json",
+        "http://localhost:3000/r/button.json",
+        "http://localhost:3000/r/badge.json",
+        "http://localhost:3000/r/sonner.json",
+        "http://localhost:3000/r/theme.json"
+      ],
+      "files": [
+        {
+      "path": "src/registry/bellhop/blocks/bellhop-container/bellhop-container.tsx",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\n\nimport { columns } from \"@/components/columns\";\nimport { DataTable } from \"@/components/data-table\";\n\nimport { SideMenu } from \"@/components/sidemenu-legacy\";\nimport HeaderLegacy from \"@/components/header-legacy\";\n\nconst data =[\n  {\n    id: \"Task-5101\",\n    taskName: \"Finalize Q3 report\",\n    status: \"Pending\",\n    dueDate: \"2024-08-01\",\n    assignedTo: \"Alice\",\n    priority: \"High\",\n  },\n  {\n    id: \"Task-5102\",\n    taskName: \"Client follow-up call\",\n    status: \"In Progress\",\n    dueDate: \"2024-07-29\",\n    assignedTo: \"Bob\",\n    priority: \"Medium\",\n  },\n  {\n    id: \"Task-5103\",\n    taskName: \"Update website copy\",\n    status: \"Done\",\n    dueDate: \"2024-07-22\",\n    assignedTo: \"Charlie\",\n    priority: \"Low\",\n  },\n  {\n    id: \"Task-5104\",\n    taskName: \"Prepare presentation slides\",\n    status: \"Pending\",\n    dueDate: \"2024-08-05\",\n    assignedTo: \"Alice\",\n    priority: \"High\",\n  },\n  {\n    id: \"Task-5105\",\n    taskName: \"System maintenance check\",\n    status: \"In Progress\",\n    dueDate: \"2024-07-30\",\n    assignedTo: \"David\",\n    priority: \"Medium\",\n  },\n  {\n    id: \"Task-5106\",\n    taskName: \"Organize team meeting\",\n    status: \"Pending\",\n    dueDate: \"2024-08-10\",\n    assignedTo: \"Eve\",\n    priority: \"Low\",\n  },\n  {\n    id: \"Task-5107\",\n    taskName: \"Review project proposal\",\n    status: \"Done\",\n    dueDate: \"2024-07-20\",\n    assignedTo: \"Frank\",\n    priority: \"Medium\",\n  },\n  {\n    id: \"Task-5108\",\n    taskName: \"Develop new feature\",\n    status: \"In Progress\",\n    dueDate: \"2024-08-15\",\n    assignedTo: \"Grace\",\n    priority: \"High\",\n  },\n  {\n    id: \"Task-5109\",\n    taskName: \"Fix security vulnerabilities\",\n    status: \"Pending\",\n    dueDate: \"2024-08-12\",\n    assignedTo: \"Alice\",\n    priority: \"High\",\n  },\n  {\n    id: \"Task-5110\",\n    taskName: \"Update user documentation\",\n    status: \"Done\",\n    dueDate: \"2024-07-25\",\n    assignedTo: \"Bob\",\n    priority: \"Low\",\n  }\n];\n\nexport default async function Page() {\n return (\n    <div className=\"flex flex-col h-screen bg-muted/80\">\n      <HeaderLegacy logoVariant=\"psSymbol\" />\n\n      <div className=\"flex flex-1 overflow-hidden\">\n        <div className=\"flex-none bg-sidebar-background shadow-md\">\n          <SideMenu variant=\"ps\" />\n        </div>\n\n        <div className=\"flex-1 p-4 md:gap-6 md:p-6 overflow-y-auto\">\n          <div className=\"flex flex-col p-4 lg:p-6 gap-4 bg-card rounded-xl shadow-md\">\n            <div className=\"page-header relative\">\n              <h1 className=\"text-xl font-semibold\">Tasks</h1>\n              <p className=\"text-xs font-regular text-muted-foreground\">Follow your daily tasks and make the most of your day.</p>\n            </div>\n            <div>\n              <DataTable data={data} columns={columns} />\n            </div>\n          </div>\n        </div>\n      </div>\n    </div>\n  );\n}\n",
+      "type": "registry:page",
+      "target": "~/app/page.tsx"
+        }
+      ]
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "data-table",
+      "type": "registry:component",
+      "title": "Data Table",
+      "author": "Actabl Design",
+      "description": "A data table component with filtering, sorting, pagination, and row selection.",
+      "dependencies": [
+        "@tanstack/react-table",
+        "lucide-react",
+        "@heroicons/react",
+        "http://localhost:3000/r/sonner.json"
+      ],
+      "registryDependencies": [
+        "http://localhost:3000/r/badge.json",
+        "http://localhost:3000/r/button.json",
+        "checkbox",
+        "dropdown-menu",
+        "input",
+        "table"
+      ],
+      "files": [
+        {
+          "path": "src/components/data-table.tsx",
+          "content": "\"use client\";\n\nimport * as React from \"react\";\nimport {\n  ColumnDef,\n  ColumnFiltersState,\n  SortingState,\n  VisibilityState,\n  flexRender,\n  getCoreRowModel,\n  getFilteredRowModel,\n  getPaginationRowModel,\n  getSortedRowModel,\n  useReactTable,\n} from \"@tanstack/react-table\";\nimport { ArrowPathIcon, EllipsisHorizontalIcon, PlusIcon, PrinterIcon } from '@heroicons/react/16/solid';\nimport { ArrowUpDown, ChevronDown, MoreHorizontal, PlusCircle } from \"lucide-react\";\nimport { Badge } from \"@/components/ui/badge\";\nimport { Button } from \"@/components/ui/button\";\nimport { Checkbox } from \"@/components/ui/checkbox\";\nimport {\n  DropdownMenu,\n  DropdownMenuCheckboxItem,\n  DropdownMenuContent,\n  DropdownMenuItem,\n  DropdownMenuLabel,\n  DropdownMenuSeparator,\n  DropdownMenuTrigger,\n} from \"@/components/ui/dropdown-menu\";\nimport { Input } from \"@/components/ui/input\";\nimport {\n  Table,\n  TableBody,\n  TableCell,\n  TableHead,\n  TableHeader,\n  TableRow,\n} from \"@/components/ui/table\";\nimport { toast } from \"sonner\";\n\ninterface DataTableProps<TData, TValue> {\n  columns: ColumnDef<TData, TValue>[]\n  data: TData[]\n}\n\nexport function DataTable<TData, TValue>({\n  columns,\n  data,\n}: DataTableProps<TData, TValue>) {\n  const [sorting, setSorting] = React.useState<SortingState>([]);\n  const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(\n    []\n  );\n  const [columnVisibility, setColumnVisibility] =\n    React.useState<VisibilityState>({});\n  const [rowSelection, setRowSelection] = React.useState({});\n\n  const table = useReactTable({\n    data,\n    columns,\n    onSortingChange: setSorting,\n    onColumnFiltersChange: setColumnFilters,\n    getCoreRowModel: getCoreRowModel(),\n    getPaginationRowModel: getPaginationRowModel(),\n    getSortedRowModel: getSortedRowModel(),\n    getFilteredRowModel: getFilteredRowModel(),\n    onColumnVisibilityChange: setColumnVisibility,\n    onRowSelectionChange: setRowSelection,\n    state: {\n      sorting,\n      columnFilters,\n      columnVisibility,\n      rowSelection,\n    },\n  });\n\n  return (\n    <div className=\"w-full\">\n      <div className=\"flex items-center pt-1 pb-4 gap-2\">\n        <Button\n          variant=\"default\"\n          size=\"sm\"\n          startIcon={<PlusIcon />}\n          onClick={() => toast.success(\"Task has been created\")}\n        >\n          Create Task\n        </Button>\n        <Input\n          placeholder=\"Search task...\"\n          value={(table.getColumn(\"taskName\")?.getFilterValue() as string) ?? \"\"}\n          onChange={(event) =>\n            table.getColumn(\"taskName\")?.setFilterValue(event.target.value)\n          }\n          className=\"ml-auto max-w-xs\"\n        />\n        <DropdownMenu>\n          <DropdownMenuTrigger asChild>\n            <Button variant=\"outline\" size=\"sm\" className=\"\">\n              Columns <ChevronDown />\n            </Button>\n          </DropdownMenuTrigger>\n          <DropdownMenuContent align=\"end\">\n            {table\n              .getAllColumns()\n              .filter((column) => column.getCanHide())\n              .map((column) => {\n                return (\n                  <DropdownMenuCheckboxItem\n                    key={column.id}\n                    className=\"capitalize\"\n                    checked={column.getIsVisible()}\n                    onCheckedChange={(value) =>\n                      column.toggleVisibility(!!value)\n                    }\n                  >\n                    {column.id}\n                  </DropdownMenuCheckboxItem>\n                );\n              })}\n          </DropdownMenuContent>\n        </DropdownMenu>\n        <div className=\"gap-1\">\n          <Button\n            variant=\"ghost\"\n            size=\"icon-sm\"\n            startIcon={<ArrowPathIcon />}\n          />\n          <Button\n            variant=\"ghost\"\n            size=\"icon-sm\"\n            startIcon={<PrinterIcon />}\n          />\n\n          <Button\n            variant=\"ghost\"\n            size=\"icon-sm\"\n            startIcon={<EllipsisHorizontalIcon />}\n          />\n        </div>\n      </div>\n      <div className=\"rounded-md border\">\n        <Table>\n          <TableHeader>\n            {table.getHeaderGroups().map((headerGroup) => (\n              <TableRow key={headerGroup.id}>\n                {headerGroup.headers.map((header) => {\n                  return (\n                    <TableHead key={header.id}>\n                      {header.isPlaceholder\n                        ? null\n                        : flexRender(\n                            header.column.columnDef.header,\n                            header.getContext()\n                          )}\n                    </TableHead>\n                  );\n                })}\n              </TableRow>\n            ))}\n          </TableHeader>\n          <TableBody>\n            {table.getRowModel().rows?.length ? (\n              table.getRowModel().rows.map((row) => (\n                <TableRow\n                  key={row.id}\n                  data-state={row.getIsSelected() && \"selected\"}\n                >\n                  {row.getVisibleCells().map((cell) => (\n                    <TableCell key={cell.id}>\n                      {flexRender(\n                        cell.column.columnDef.cell,\n                        cell.getContext()\n                      )}\n                    </TableCell>\n                  ))}\n                </TableRow>\n              ))\n            ) : (\n              <TableRow>\n                <TableCell\n                  colSpan={columns.length}\n                  className=\"h-24 text-center\"\n                >\n                  No results.\n                </TableCell>\n              </TableRow>\n            )}\n          </TableBody>\n        </Table>\n      </div>\n      <div className=\"flex items-center justify-end space-x-2 py-4\">\n        <div className=\"flex-1 text-sm text-muted-foreground\">\n          {table.getFilteredSelectedRowModel().rows.length} of{\" \"}\n          {table.getFilteredRowModel().rows.length} row(s) selected.\n        </div>\n        <div className=\"space-x-2\">\n          <Button\n            variant=\"outline\"\n            size=\"sm\"\n            onClick={() => table.previousPage()}\n            disabled={!table.getCanPreviousPage()}\n          >\n            Previous\n          </Button>\n          <Button\n            variant=\"outline\"\n            size=\"sm\"\n            onClick={() => table.nextPage()}\n            disabled={!table.getCanNextPage()}\n          >\n            Next\n          </Button>\n        </div>\n      </div>\n    </div>\n  );\n}\n",
+          "type": "registry:component",
+          "target": "~/components/data-table.tsx"
+        },
+        {
+          "path": "src/components/columns.tsx",
+          "content": "\"use client\";\n\nimport { ColumnDef } from \"@tanstack/react-table\";\nimport { Badge } from \"@/components/ui/badge\";\nimport { Button } from \"@/components/ui/button\";\nimport { Checkbox } from \"@/components/ui/checkbox\";\nimport {\n  DropdownMenu,\n  DropdownMenuContent,\n  DropdownMenuItem,\n  DropdownMenuLabel,\n  DropdownMenuSeparator,\n  DropdownMenuTrigger,\n} from \"@/components/ui/dropdown-menu\";\nimport { ArrowUpDown, MoreHorizontal } from \"lucide-react\";\nimport { ChevronUpDownIcon } from '@heroicons/react/16/solid';\n\nexport type Task = {\n  id: string;\n  taskName: string;\n  status: \"Pending\" | \"In Progress\" | \"Done\";\n  dueDate: string;\n  assignedTo: string;\n  priority: \"Low\" | \"Medium\" | \"High\";\n};\n\nexport const columns: ColumnDef<Task>[] = [\n  {\n    id: \"select\",\n    header: ({ table }) => (\n      <Checkbox\n        checked={\n          table.getIsAllPageRowsSelected() ||\n          (table.getIsSomePageRowsSelected() && \"indeterminate\")\n        }\n        onCheckedChange={(value) => table.toggleAllPageRowsSelected(!!value)}\n        aria-label=\"Select all\"\n      />\n    ),\n    cell: ({ row }) => (\n      <Checkbox\n        checked={row.getIsSelected()}\n        onCheckedChange={(value) => row.toggleSelected(!!value)}\n        aria-label=\"Select row\"\n      />\n    ),\n    enableSorting: false,\n    enableHiding: false,\n  },\n  {\n    accessorKey: \"taskName\",\n    header: ({ column }) => {\n      return (\n        <Button\n          variant=\"ghost\"\n          className=\"font-semibold text-neutral-700 hover:text-neutral-800 p-1 h-8 focus:ring-0\"\n          onClick={() =>\n            column.toggleSorting(column.getIsSorted() === \"asc\")\n          }\n        >\n          Task\n          <ChevronUpDownIcon className=\"size-4\"/>\n        </Button>\n      );\n    },\n    cell: ({ row }) => (\n      <div className=\"capitalize\">{row.getValue(\"taskName\")}</div>\n    ),\n  },\n  {\n    accessorKey: \"status\",\n    header: \"Status\",\n    cell: ({ row }) => {\n      const status = row.getValue(\"status\") as Task[\"status\"];\n      let badgeColor: \"yellow\" | \"blue\" | \"green\" | \"neutral\" = \"neutral\";\n      if (status === \"Pending\") badgeColor = \"yellow\";\n      else if (status === \"In Progress\") badgeColor = \"blue\";\n      else if (status === \"Done\") badgeColor = \"green\";\n      return (\n        <Badge variant=\"outline\" color={badgeColor}>\n          {status}\n        </Badge>\n      );\n    },\n  },\n  {\n    accessorKey: \"dueDate\",\n    header: ({ column }) => {\n      return (\n        <Button\n          variant=\"ghost\"\n          className=\"font-semibold text-neutral-700 hover:text-neutral-800 p-1 h-8 focus:ring-0\"\n          onClick={() =>\n            column.toggleSorting(column.getIsSorted() === \"asc\")\n          }\n        >\n          Due Date\n          <ChevronUpDownIcon className=\"size-4\"/>\n        </Button>\n      );\n    },\n    cell: ({ row }) => (\n      <div className=\"capitalize\">{row.getValue(\"dueDate\")}</div>\n    ),\n  },\n  {\n    accessorKey: \"assignedTo\",\n    header: ({ column }) => {\n      return (\n        <Button\n          variant=\"ghost\"\n          className=\"font-semibold text-neutral-700 hover:text-neutral-800 p-1 h-8 focus:ring-0\"\n          onClick={() =>\n            column.toggleSorting(column.getIsSorted() === \"asc\")\n          }\n        >\n        Assigned To\n        <ChevronUpDownIcon className=\"size-4\"/>\n      </Button>\n      );\n    },\n    cell: ({ row }) => <div>{row.getValue(\"assignedTo\")}</div>,\n  },\n  {\n    accessorKey: \"priority\",\n    header: \"Priority\",\n    cell: ({ row }) => {\n      const priority = row.getValue(\"priority\") as Task[\"priority\"];\n      let badgeColor: \"red\" | \"orange\" | \"green\" = \"green\";\n      if (priority === \"High\") badgeColor = \"red\";\n      else if (priority === \"Medium\") badgeColor = \"orange\";\n      return (\n        <Badge variant=\"solid\" color={badgeColor}>\n          {priority}\n        </Badge>\n      );\n    },\n  },\n  {\n    id: \"actions\",\n    enableHiding: false,\n    cell: ({ row }) => {\n      const task = row.original;\n\n      return (\n        <DropdownMenu>\n          <DropdownMenuTrigger asChild>\n            <Button variant=\"ghost\" className=\"h-8 w-8 p-0\">\n              <span className=\"sr-only\">Open menu</span>\n              <MoreHorizontal />\n            </Button>\n          </DropdownMenuTrigger>\n          <DropdownMenuContent align=\"end\">\n            <DropdownMenuLabel>Actions</DropdownMenuLabel>\n            <DropdownMenuItem\n              onClick={() => navigator.clipboard.writeText(task.id)}\n            >\n              Copy task ID\n            </DropdownMenuItem>\n            <DropdownMenuSeparator />\n            <DropdownMenuItem>View project</DropdownMenuItem>\n            <DropdownMenuItem>View details</DropdownMenuItem>\n          </DropdownMenuContent>\n        </DropdownMenu>\n      );\n    },\n  },\n];\n",
+          "type": "registry:component",
+          "target": "~/components/columns.tsx"
+        }
+      ]
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "columns",
+      "type": "registry:component",
+      "title": "Columns Configuration",
+      "author": "Actabl Design",
+      "description": "A configuration for table columns, including sorting, filtering, and actions.",
+      "dependencies": [
+        "@tanstack/react-table",
+        "lucide-react",
+        "@heroicons/react"
+      ],
+      "registryDependencies": [
+        "http://localhost:3000/r/badge.json",
+        "http://localhost:3000/r/button.json",
+        "checkbox",
+        "dropdown-menu"
+      ],
+      "files": [
+        {
+          "path": "src/components/columns.tsx",
+          "content": "\"use client\";\n\nimport { ColumnDef } from \"@tanstack/react-table\";\nimport { Badge } from \"@/components/ui/badge\";\nimport { Button } from \"@/components/ui/button\";\nimport { Checkbox } from \"@/components/ui/checkbox\";\nimport {\n  DropdownMenu,\n  DropdownMenuContent,\n  DropdownMenuItem,\n  DropdownMenuLabel,\n  DropdownMenuSeparator,\n  DropdownMenuTrigger,\n} from \"@/components/ui/dropdown-menu\";\nimport { ArrowUpDown, MoreHorizontal } from \"lucide-react\";\nimport { ChevronUpDownIcon } from '@heroicons/react/16/solid';\n\nexport type Task = {\n  id: string;\n  taskName: string;\n  status: \"Pending\" | \"In Progress\" | \"Done\";\n  dueDate: string;\n  assignedTo: string;\n  priority: \"Low\" | \"Medium\" | \"High\";\n};\n\nexport const columns: ColumnDef<Task>[] = [\n  {\n    id: \"select\",\n    header: ({ table }) => (\n      <Checkbox\n        checked={\n          table.getIsAllPageRowsSelected() ||\n          (table.getIsSomePageRowsSelected() && \"indeterminate\")\n        }\n        onCheckedChange={(value) => table.toggleAllPageRowsSelected(!!value)}\n        aria-label=\"Select all\"\n      />\n    ),\n    cell: ({ row }) => (\n      <Checkbox\n        checked={row.getIsSelected()}\n        onCheckedChange={(value) => row.toggleSelected(!!value)}\n        aria-label=\"Select row\"\n      />\n    ),\n    enableSorting: false,\n    enableHiding: false,\n  },\n  {\n    accessorKey: \"taskName\",\n    header: ({ column }) => {\n      return (\n        <Button\n          variant=\"ghost\"\n          className=\"font-semibold text-neutral-700 hover:text-neutral-800 p-1 h-8 focus:ring-0\"\n          onClick={() =>\n            column.toggleSorting(column.getIsSorted() === \"asc\")\n          }\n        >\n          Task\n          <ChevronUpDownIcon className=\"size-4\"/>\n        </Button>\n      );\n    },\n    cell: ({ row }) => (\n      <div className=\"capitalize\">{row.getValue(\"taskName\")}</div>\n    ),\n  },\n  {\n    accessorKey: \"status\",\n    header: \"Status\",\n    cell: ({ row }) => {\n      const status = row.getValue(\"status\") as Task[\"status\"];\n      let badgeColor: \"yellow\" | \"blue\" | \"green\" | \"neutral\" = \"neutral\";\n      if (status === \"Pending\") badgeColor = \"yellow\";\n      else if (status === \"In Progress\") badgeColor = \"blue\";\n      else if (status === \"Done\") badgeColor = \"green\";\n      return (\n        <Badge variant=\"outline\" color={badgeColor}>\n          {status}\n        </Badge>\n      );\n    },\n  },\n  {\n    accessorKey: \"dueDate\",\n    header: ({ column }) => {\n      return (\n        <Button\n          variant=\"ghost\"\n          className=\"font-semibold text-neutral-700 hover:text-neutral-800 p-1 h-8 focus:ring-0\"\n          onClick={() =>\n            column.toggleSorting(column.getIsSorted() === \"asc\")\n          }\n        >\n          Due Date\n          <ChevronUpDownIcon className=\"size-4\"/>\n        </Button>\n      );\n    },\n    cell: ({ row }) => (\n      <div className=\"capitalize\">{row.getValue(\"dueDate\")}</div>\n    ),\n  },\n  {\n    accessorKey: \"assignedTo\",\n    header: ({ column }) => {\n      return (\n        <Button\n          variant=\"ghost\"\n          className=\"font-semibold text-neutral-700 hover:text-neutral-800 p-1 h-8 focus:ring-0\"\n          onClick={() =>\n            column.toggleSorting(column.getIsSorted() === \"asc\")\n          }\n        >\n        Assigned To\n        <ChevronUpDownIcon className=\"size-4\"/>\n      </Button>\n      );\n    },\n    cell: ({ row }) => <div>{row.getValue(\"assignedTo\")}</div>,\n  },\n  {\n    accessorKey: \"priority\",\n    header: \"Priority\",\n    cell: ({ row }) => {\n      const priority = row.getValue(\"priority\") as Task[\"priority\"];\n      let badgeColor: \"red\" | \"orange\" | \"green\" = \"green\";\n      if (priority === \"High\") badgeColor = \"red\";\n      else if (priority === \"Medium\") badgeColor = \"orange\";\n      return (\n        <Badge variant=\"solid\" color={badgeColor}>\n          {priority}\n        </Badge>\n      );\n    },\n  },\n  {\n    id: \"actions\",\n    enableHiding: false,\n    cell: ({ row }) => {\n      const task = row.original;\n\n      return (\n        <DropdownMenu>\n          <DropdownMenuTrigger asChild>\n            <Button variant=\"ghost\" className=\"h-8 w-8 p-0\">\n              <span className=\"sr-only\">Open menu</span>\n              <MoreHorizontal />\n            </Button>\n          </DropdownMenuTrigger>\n          <DropdownMenuContent align=\"end\">\n            <DropdownMenuLabel>Actions</DropdownMenuLabel>\n            <DropdownMenuItem\n              onClick={() => navigator.clipboard.writeText(task.id)}\n            >\n              Copy task ID\n            </DropdownMenuItem>\n            <DropdownMenuSeparator />\n            <DropdownMenuItem>View project</DropdownMenuItem>\n            <DropdownMenuItem>View details</DropdownMenuItem>\n          </DropdownMenuContent>\n        </DropdownMenu>\n      );\n    },\n  },\n];\n",
+          "type": "registry:component",
+          "target": "~/components/columns.tsx"
+        }
+      ]
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "header-legacy",
+      "type": "registry:component",
+      "title": "Header Legacy",
+      "author": "Actabl Design",
+      "description": "A legacy header component with a logo, dropdown menu, search bar, notifications, and user avatar.",
+      "dependencies": ["lucide-react", "@heroicons/react"],
+      "registryDependencies": [
+        "http://localhost:3000/r/button.json",
+        "http://localhost:3000/r/logo.json",
+        "avatar",
+        "label",
+        "input",
+        "dropdown-menu"
+      ],
+      "files": [
+        {
+          "path": "src/components/header-legacy.tsx",
+          "content": "\"use client\";\n\nimport * as React from \"react\";\n\nimport Link from \"next/link\";\nimport { Button } from \"@/components/ui/button\";\nimport { Avatar, AvatarImage, AvatarFallback } from \"@/components/ui/avatar\";\nimport { Label } from \"@/components/ui/label\";\nimport { Input } from \"@/components/ui/input\";\nimport { Logo } from \"@/components/logo\";\nimport { ChevronDown, Bell, Search } from \"lucide-react\";\nimport { MagnifyingGlassIcon, BellAlertIcon } from '@heroicons/react/16/solid';\nimport { DropdownMenu, DropdownMenuTrigger, DropdownMenuContent, DropdownMenuItem } from \"@/components/ui/dropdown-menu\";\n\ninterface HeaderLegacyProps {\n  logoVariant?: \"actablSymbol\" | \"alSymbol\" | \"heSymbol\" | \"psSymbol\" | \"trSymbol\";\n}\n\nconst HeaderLegacy = ({ logoVariant = \"actablSymbol\" }: HeaderLegacyProps) => {\n  return (\n    <header className=\"bg-indigo-800 flex flex-wrap md:justify-start md:flex-nowrap z-50 w-full\">\n\n    <nav className=\"w-full h-14 flex items-center justify-between px-4 relative\">\n      <div\n        id=\"gradientBar\"\n        className=\"absolute top-0 left-0 h-full w-1.5\"\n        style={{\n          background: \"linear-gradient(180deg, rgba(250, 147, 149, 1.00) 0%, rgba(93, 115, 222, 1.00) 50.999999046325684%, rgba(23, 27, 112, 1.00) 100%)\",\n        }}\n      ></div>\n      <div className=\"w-full h-13 pl-2 flex items-center justify-start gap-2\">\n        <Logo variant={logoVariant} className=\"text-white w-10\" />\n        <div className=\"flex items-center gap-2\">\n          <div className=\"h-8 w-px\"></div>\n          <DropdownMenu>\n            <DropdownMenuTrigger asChild>\n              <Button\n                variant=\"default\"\n                size=\"md\"\n                className=\"bg-transparent hover:bg-indigo-700/98 cursor-pointer\"\n                endIcon={<ChevronDown />}\n              >\n                Hotel Name\n              </Button>\n            </DropdownMenuTrigger>\n            <DropdownMenuContent className=\"w-48\" align=\"start\">\n              <DropdownMenuItem>Hotel 1</DropdownMenuItem>\n              <DropdownMenuItem>Hotel 2</DropdownMenuItem>\n              <DropdownMenuItem>Hotel 3</DropdownMenuItem>\n            </DropdownMenuContent>\n          </DropdownMenu>\n        </div>\n      </div>\n\n      <div className=\"flex items-center gap-4\">\n        <div className=\"relative\">\n          <Label htmlFor=\"search\" className=\"sr-only\">\n            Search\n          </Label>\n          <Input\n            data-sidebar=\"input\"\n            id=\"search\"\n            placeholder=\"Search...\"\n            className=\"pl-10 h-8 w-64 bg-white text-gray-700 rounded-lg focus-visible:border-ring focus-visible:ring-primary/30 focus-visible:ring-2\"\n          />\n          <MagnifyingGlassIcon className=\"absolute left-3 top-1/2 -translate-y-1/2 text-neutral-500 size-4\" />\n        </div>\n\n        <div className=\"relative\">\n          <Button\n            variant=\"ghost\"\n            size=\"sm\"\n            className=\"text-white hover:bg-primary/80\"\n            startIcon={<BellAlertIcon />}\n          ></Button>\n\n          <span className=\"absolute top-0 right-0 bg-destructive text-white text-xs rounded-full w-4 h-4 flex items-center justify-center\">\n            3\n          </span>\n        </div>\n\n        <div className=\"relative\">\n          <DropdownMenu>\n            <DropdownMenuTrigger asChild>\n              <Avatar className=\"cursor-pointer\">\n                <AvatarImage\n                  src=\"https://avatar.iran.liara.run/public/41\"\n                  alt=\"AB\"\n                />\n                <AvatarFallback>AB</AvatarFallback>\n              </Avatar>\n            </DropdownMenuTrigger>\n            <DropdownMenuContent className=\"w-48\" align=\"end\">\n              <DropdownMenuItem>Profile</DropdownMenuItem>\n              <DropdownMenuItem>Settings</DropdownMenuItem>\n              <DropdownMenuItem>Logout</DropdownMenuItem>\n            </DropdownMenuContent>\n          </DropdownMenu>\n        </div>\n      </div>\n    </nav>\n    </header>\n  );\n};\n\nexport default HeaderLegacy;\n",
+          "type": "registry:component",
+          "target": "~/components/header-legacy.tsx"
+        },
+        {
+          "path": "src/registry/bellhop/components/logo.tsx",
+          "content": "import * as React from \"react\";\n\ninterface LogoProps {\n  variant?: \"actablSymbol\" | \"alSymbol\" | \"heSymbol\" | \"psSymbol\" | \"trSymbol\";\n  className?: string;\n}\n\nexport const Logo = ({ variant = \"actablSymbol\", className }: LogoProps) => {\n  const logoMap = {\n    actablSymbol: \"Actabl\",\n    alSymbol: \"AL\",\n    heSymbol: \"HE\",\n    psSymbol: \"PS\",\n    trSymbol: \"TR\",\n  };\n\n  return (\n    <div className={`logo ${className}`}>\n      {logoMap[variant] || \"Logo\"}\n    </div>\n  );\n};\n\nexport default Logo;\n",
+          "type": "registry:component",
+          "target": "~/components/logo.tsx"
+        }
+      ]
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "sidemenu-legacy",
+      "type": "registry:component",
+      "title": "Side Menu Legacy",
+      "author": "Actabl Design",
+      "description": "A legacy side menu component for navigation.",
+      "dependencies": ["lucide-react"],
+      "registryDependencies": ["utils"],
+      "files": [
+        {
+          "path": "src/registry/bellhop/components/sidemenu-legacy.tsx",
+          "content": "import { cn } from \"@/lib/utils\";\nimport { Landmark, Home, Calendar, Calculator, CircleDollarSign, BarChart, ChartSpline, Settings, TrendingUpDown, BookOpen } from \"lucide-react\";\n\ntype SideMenuVariant = \"he\" | \"ps\" | \"tr\";\n\ninterface SideMenuProps {\n  variant: SideMenuVariant;\n}\n\nconst menuItems = {\n  ps: [\n    { label: \"Corp Reports\", icon: Landmark },\n    { label: \"Site Reports\", icon: Home },\n    { label: \"Daily\", icon: Calendar },\n    { label: \"Budget\", icon: CircleDollarSign },\n    { label: \"Forecast\", icon: TrendingUpDown },\n    { label: \"Accounting\", icon: Calculator },\n    { label: \"ProfitPace\", icon: ChartSpline },\n    { label: \"ProfitPlan\", icon: BarChart },\n    { label: \"Admin\", icon: Settings },\n\n  ],\n  he: [\n    { label: \"Budget\", icon: Calculator },\n    { label: \"Forecast\", icon: Calculator },\n  ],\n  tr: [\n    { label: \"Admin\", icon: Settings },\n  ],\n  footer: [{ label: \"Help\", icon: BookOpen }, { label: \"Admin\", icon: Settings }],\n};\n\nexport function SideMenu({ variant }: SideMenuProps) {\n  const variantItems = menuItems[variant] || [];\n\n  return (\n    <div\n      className={cn(\n        \"bg-sidebar-background group-data-[variant=floating]:border-sidebar-border flex h-full min-h-0 flex-col p-1\",\n        variant === \"he\" && \"w-15\",\n        variant === \"ps\" && \"w-24 bg-white pt-2\",\n        variant === \"tr\" && \"w-12\"\n      )}\n    >\n      <div className=\"flex min-h-0 flex-1 flex-col gap-2 overflow-auto\">\n        {variantItems.map((item, index) => (\n          <span\n            key={index}\n            className=\"flex flex-col items-center justify-start w-full px-2 py-2 rounded-md text-sidebar-foreground hover:text-indigo-700 hover:bg-indigo-100 cursor-pointer\"\n          >\n            <a href=\"#\" className=\"flex flex-col items-center\">\n              <item.icon className=\"h-5 w-5 mb-1\" />\n              <span className=\"text-[11px] text-center font-semibold tracking-tight\">{item.label}</span>\n            </a>\n          </span>\n        ))}\n      </div>\n      <div className=\"flex flex-col gap-2\">\n        {menuItems.footer.map((item, index) => (\n           <span\n            key={index}\n            className=\"flex flex-col items-center justify-start w-full px-2 py-2 rounded-md text-sidebar-foreground hover:text-indigo-700 hover:bg-indigo-100 cursor-pointer\"\n          >\n            <a href=\"#\" className=\"flex flex-col items-center\">\n              <item.icon className=\"h-5 w-5 mb-1\" />\n              <span className=\"text-[11px]\">{item.label}</span>\n            </a>\n          </span>\n        ))}\n      </div>\n    </div>\n  );\n}",
+          "type": "registry:component",
+          "target": "~/components/sidemenu-legacy.tsx"
+        },
+        {
+          "path": "src/registry/bellhop/lib/utils.ts",
+          "type": "registry:lib"
+        }
+      ]
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "logo",
+      "type": "registry:ui",
+      "author": "Actabl Design",
+      "title": "Logo",
+      "description": "A reusable logo component for the application.",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "src/registry/bellhop/components/logo.tsx",
+          "content": "import * as React from \"react\";\n\ninterface LogoProps {\n  variant?: \"actablSymbol\" | \"alSymbol\" | \"heSymbol\" | \"psSymbol\" | \"trSymbol\";\n  className?: string;\n}\n\nexport const Logo = ({ variant = \"actablSymbol\", className }: LogoProps) => {\n  const logoMap = {\n    actablSymbol: \"Actabl\",\n    alSymbol: \"AL\",\n    heSymbol: \"HE\",\n    psSymbol: \"PS\",\n    trSymbol: \"TR\",\n  };\n\n  return (\n    <div className={`logo ${className}`}>\n      {logoMap[variant] || \"Logo\"}\n    </div>\n  );\n};\n\nexport default Logo;\n",
+          "type": "registry:ui",
+          "target": "~/components/logo.tsx"
+        }
+      ]
     }
   ]
 }
